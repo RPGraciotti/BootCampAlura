@@ -1,2 +1,2 @@
 # BootCampAlura
-repositório para o desenvolvimento do curso Bootcamp
+Repositório para o desenvolvimento do curso Bootcamp
