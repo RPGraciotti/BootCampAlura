@@ -1,0 +1,20 @@
+TÉTANO ACIDENTAL - Casos confirmados Notificados no Sistema de Informação de Agravos de Notificação - Brasil
+Casos confirmados por Evolução do caso e Faixa Etária
+Período:2001-2006
+"Evolução do caso";"Em branco/IGN";"<1 Ano";"1-4";"5-9";"10-14";"15-19";"20-39";"40-59";"60-64";"65-69";"70-79";"80 e +";"Total"
+"Ign/Branco";-;2;1;10;12;7;35;46;7;5;11;4;140
+"Cura";2;8;25;69;76;78;564;714;115;87;103;29;1870
+"Óbito";3;2;10;25;22;21;204;380;107;81;134;57;1046
+"Total";5;12;36;104;110;106;803;1140;229;173;248;90;3056
+ Fonte: Ministério da Saúde/SVS - Sistema de Informação de Agravos de Notificação - Sinan 
+ Notas:
+ 
+ Excluídos casos não residentes no Brasil
+ Períodos Disponíveis ou período - Correspondem aos anos de notificação dos casos.
+ Para tabular dados em série histórica selecione na linha a variável de interesse, na Coluna Ano dos 1ºs sintomas;
+    em Períodos Disponíveis assinale o ano inicial da série e todos os posteriores até o ano atual (p/ incluir casos notificados
+    com atraso) e em Seleções Disponíveis assinale os anos dos 1ºs sintomas (ex: série histórica de nº de casos, 2001 a 2005:
+    selecione na linha UF de residência, na Coluna Ano de 1ºs sintomas, em Períodos disponíveis-2001 até o ano atual e
+    em Seleções assinale Ano de 1ºs sintomas de 2001 a 2005).
+ Para cálculo da incidência utilize locais de residência.
+ 

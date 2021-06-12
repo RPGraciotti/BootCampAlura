@@ -1,0 +1,22 @@
+HEPATITES VIRAIS - Casos confirmados Notificados no Sistema de Informação de Agravos de Notificação - Brasil
+Casos confirmados por Evolução caso e Ano Diag/sintomas
+Período:2001-2006
+"Evolução caso";"2001";"2002";"2003";"2004";"2005";"2006";"Total"
+"Ign/Branco";12971;7930;7059;7562;8702;7604;51828
+"Cura";28145;21770;22388;28018;33011;24338;157670
+"Óbito";1087;1041;1170;1208;1239;1009;6754
+"Portador Crônico";1699;3496;5737;6829;7687;5948;31396
+"Hepatite Crônica";2383;4453;6961;9524;9483;7108;39912
+"Total";46285;38690;43315;53141;60122;46007;287560
+ Fonte: Ministério da Saúde/SVS - Sistema de Informação de Agravos de Notificação - Sinan 
+ Notas:
+ 
+ Excluídos casos não residentes no Brasil
+ Períodos Disponíveis ou período - Correspondem aos anos de notificação dos casos.
+ Para tabular dados em série histórica selecione na linha a variável de interesse, na Coluna Ano dos 1ºs sintomas;
+    em Períodos Disponíveis assinale o ano inicial da série e todos os posteriores até o ano atual (p/ incluir casos notificados
+    com atraso) e em Seleções Disponíveis assinale os anos dos 1ºs sintomas (ex: série histórica de nº de casos, 2001 a 2005:
+    selecione na linha UF de residência, na Coluna Ano de 1ºs sintomas, em Períodos disponíveis-2001 até o ano atual e
+    em Seleções assinale Ano de 1ºs sintomas de 2001 a 2005).
+ Para cálculo da incidência utilize locais de residência.
+ 
