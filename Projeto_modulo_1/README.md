@@ -1,3 +1,4 @@
+###### Acesso ao notebook: https://github.com/RPGraciotti/BootCampAlura/blob/main/Projeto_modulo_1/notebooks/Projeto_modulo_1.ipynb
 # Introdução
 Seja bem-vindo e/ou muito bem-vinda ao meu notebook do projeto/super-desafio do módulo 1!
 
