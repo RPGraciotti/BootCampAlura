@@ -66,8 +66,6 @@ Os conjuntos de dados foram manipulados para conter somente os dados até o dia 
 
 # Análises
 
-Após a importação das diferentes bases dados, e da filtragem dos municípios da base "casos_full", prosseguimos para as análises.
-
 ## Casos diários
 
 Vamos primeiro olhar para a dinâmica de novos casos de covid em São Paulo e nos nossos municípios escolhidos. A expectativa é de que as trajetórias sejam parecidas entre os municípios e São Paulo, guardadas as devidas proporções:
