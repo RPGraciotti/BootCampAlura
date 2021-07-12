@@ -132,7 +132,7 @@ Não podemos considerar somente a dinâmica de aplições de segundas doses para
 
 Tendo tudo isso em mente, vamos examinar a dinâmica do total de doses aplicadas no estado para balizar nossas expectativas com relação aos muncípios.
 
-*Nota: também convém dizer que os dados disponíveis no sistema do SUS para análise corresponde também ao total diário de doses, sem discriminação de primeira ou segunda dose.*
+*Nota: também convém dizer que os dados disponíveis no sistema do SUS para análise correspondem também ao total diário de doses, sem discriminação de primeira ou segunda dose.*
 
 ![](https://raw.githubusercontent.com/RPGraciotti/BootCampAlura/main/Projeto_modulo_3/figs/fig_6.png)
 
