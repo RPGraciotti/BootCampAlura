@@ -1,4 +1,4 @@
-###### Acesso ao notebook: https://github.com/RPGraciotti/BootCampAlura/blob/main/Projeto_modulo_3/Projeto_modulo_3.ipynb
+###### Acesso ao notebook: https://github.com/RPGraciotti/BootCampAlura/blob/main/Projeto_modulo_3/notebooks/Projeto_modulo_3.ipynb
 
 # Introdução
 
