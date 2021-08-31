@@ -180,6 +180,177 @@ A implementação do TPOT permite personalizações interessantes. Além de par�
 
 ###### Link de acesso: https://github.com/RPGraciotti/BootCampAlura/blob/main/Projeto_final/Avalia%C3%A7%C3%A3o.ipynb
 
+# Introdução - Avaliação dos modelos/pipelines
+
+Após a etapa anterior de busca dos melhores pipelines, é hora de examinar a fundo quais os modelos escolhidos, quais os parâmetros, e determinar se os modelos são de fato bons modelos e qual seria o pipeline escolhido.
+
+A busca inicial foi feita com base em parâmetros de validação de modelos de Machine Learning. Existe uma [vasta literatura](https://scholar.google.com/scholar?hl=pt-BR&as_sdt=0%2C5&q=evaluation+machine+learning+models&btnG) sobre quais as melhores ferramentas, e quais a melhores formas de se avaliar a qualidade de um modelo de Machine Learning, e é sempre um tópico [bastante debatido](https://scholar.google.com/scholar?as_ylo=2021&q=evaluation+machine+learning+models&hl=pt-BR&as_sdt=0,5).
+
+## Métricas
+
+As métricas de avaliação escolhidas derivam do conceito de matriz de confusão. A matriz de confusão é uma matriz simétrica que representa a distribuição de acertos e erros de predição do modelo. A forma como os eixos são organizados pode variar, mas nesse exemplo vemos o mesmo padrão utilizado pelo sklearn: no eixo x temos os valores preditos e no eixo y os valores reais.
+
+![exemplo de matriz de confusão](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/matrix_2.jpeg)
+
+**Explicação detalhada sobre as métricas no notebook de avaliação**
+
+Todas as classes de métricas variam de 0 a 1, com o melhor resultado possível sendo o mais próximo de 1.
+Novamente, as métricas escolhidas para realizar a avaliação final foram "acurácia", "precisão", "AUC", "recall" e "F1 score".
+
+[Outra explicação resumida sobre métricas de avaliação](https://towardsdatascience.com/various-ways-to-evaluate-a-machine-learning-models-performance-230449055f15).
+
+Outra forma de avaliar graficamente a performance dos modelos, é a inspeção de duas curvas: a própria [curva ROC e a curva Precision-Recall (PC)](https://machinelearningmastery.com/roc-curves-and-precision-recall-curves-for-classification-in-python/).
+
+**Explicação detalhada sobre as curvas no notebook de avaliação**
+
+É interessante a comparação entre essas duas curvas, [pois ambas acabam descrevendo aspectos diferentes do modelo](https://dl.acm.org/doi/10.1145/1143844.1143874), embora ambas tenham por objetivo caracterizar a performance deste. Em dados desbalanceados, a curva Precision-Recall pode oferecer uma leitura melhor da peformance do modelo em relação à curva ROC.
+
+## Modelos de árvores de decisão de floresta aleatória
+Uma outra observação importante a ser feita é que todos os modelos selecionados são do mesmo tipo, de "floresta aleatória de árvores de decisão", ou [**Random Forest**](https://www.section.io/engineering-education/introduction-to-random-forest-in-machine-learning/); com apenas diferenças entre os hiperparâmetros ou etapas de pré-processamento. Cabe então descrever o que é um algoritmo desse tipo. Em sua essência, é um método do tipo "ensemble", que combina diversos outros modelos, no caso, modelos individuais de árvores de decisão. Uma árvore de decisão é um modelo composto por 3 elementos: a raíz, nós de decisão, e nós de escolha ("folhas"). A cada passo, os dados são separados de acordo com um critério de decisão baseado nas features do conjunto de dados. Por exemplo, o primeiro nó de decisão pode ser, no nosso caso, "O paciente tem mais de 65 anos?". Os dados serão separados conforme essa feature, e uma nova decisão é tomada, até que não seja mais possível separar os dados e o resultado seja a previsão final (no caso, uma classificação binária). 
+
+![Exemplo de uma árvore de decisão](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/decision-tree-nodes.png)
+
+Os critérios adotados para definir a melhor forma de separar os dados, a ordem com que as features são testadas e a profundidade de árvore (número de etapas) são todos parâmetros do modelo. O que o Random Forest faz é, em essência, criar várias árvores diferentes, com parâmetros diferentes, aleatorizando a forma como as features são ordenadas em cada árvore. Ao final, o algoritmo busca o resultado de cada árvore individualmente como uma "votação" para determinar o resultado final, o mais "votado" é o resultado escolhido:
+
+![Exemplo de Random Forest](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/random-forest-classifier.png)
+
+# Avaliação
+
+Para que a avaliação dos modelos ocorra de forma uniforme entre os diferentes pipelines, determinei que o "split" de dados de treino e dados de teste seja o mesmo. Isso é necessário porque algumas das formas de avaliação que utilizei como matriz de confusão e visualização da curva ROC dependem de uma única rodada do modelo.
+
+A aplicação da função de validação cruzada por meio de ```RepeatedStratifiedKFold``` a princípio não é necessária que seja a mesma entre as diferentes rodadas, pois o método já incorpora aleatoriedade ao ser repetido n vezes no conjunto de dados. Os mesmos padrões foram adotados durante a busca de modelos: o algoritmo separa o conjunto de dados em 5 partes, com 10 combinações diferentes. A cada rodada, o algoritmo ajusta o modelo em 4 dessas partes, e testa na parte restante. Isso é repetido 10 vezes. Dessa forma, no final, o teste do modelo é realizado 50 vezes, e várias métricas podem ser acessadas. Novamente, busquei os parâmetros de acurácia, precisão, recall, AUC e F1.
+
+## Modelo que maximiza acurácia: m1
+
+A primeira visualização do comportamento do modelo é feita através da matriz de confusão:
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig1.png)
+
+**Como interpretar a matriz de confusão normalizada?**
+
+Primeiro, a soma de todos os valores é 1 (a representação gráfica costuma arredondar alguns valores para baixo).
+
+Partindo do exemplo da introdução, lendo os quadrantes linha por linha:
+
+> Primeiro temos o valor de TN, ou seja, quantos valores realmente negativos o modelo prediz como negativos;
+
+> Segundo temos o valor de FP, ou seja, quantos valores foram preditos como positivos mas na realidade são negativos;
+
+> Terceiro temos o valor de FN, ou seja, quantos valores foram preditos como negativos mas na realidade são positivos;
+
+> Quarto temos o valor de TP, ou seja, quantos valores realmente positivos foram preditos como positivos.
+
+O objetivo de um bom modelo é maximizar as taxas de verdadeiros (no caso, a diagonal principal) e minimizar as taxas de falsos. 
+
+**O que temos nesse primeiro exemplo?**
+
+Como padrão geral, veremos que a taxa de verdadeiros negativos é sempre alta. Isso é um bom começo, mas não resume tudo. Neste modelo de busca de melhor acurácia, o desempenho das outras classes é relativamente semelhante. Esse padrão não necessariamente é o ideal, dado que o valor de falsos negativos é bastante alto. Esse é um ponto muito importante do problema em questão: se o modelo tem alto valor de falsos negativos, estamos dizendo que muitas das pessoas que precisariam ser internadas em um leito de UTI, não precisam. E isso é um problema bastante grave que, ao meu ver, deve ser minimizado o máximo possível. 
+
+À primeira inspeção, os valores além de TN não são muito dissimilares entre si, o que indica uma performance razoável de um modelo, com taxas de falsos também não muito altas, quando comparado a alguns padrões que veremos em sequência.
+
+---
+
+A próxima visualização é a implementação de validação cruzada com estratificação repetida. O algoritmo aplica a estratificação em 5 classes, 10 vezes, totalizando 50 avaliações. O resultado de cada métrica é representado então através de um boxplot:
+
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig2.png)
+
+Neste gráfico, a idéia é que os resultados tenham distribuições parecidas, preferencialmente centradas em valores altos. E, como teste adicional da performance da busca por parâmetros, esperamos que a métrica buscada seja a de valor mais alto. Podemos ver que as métricas com valores mais altos foram de ROC_AUC e de acurácia. Entretanto, a métrica de Recall é relativamente baixa, empurrando o valor de F1 também para baixo. 
+
+Confirmando o padrão da matriz de confusão, isso indica que este modelo tem uma performance razoável na maioria das vezes, pois incorre em uma taxa não desprezível de falsos negativos, abaixando valor de recall e F1; mas também uma taxa baixa de falsos positivos.
+
+
+---
+
+Por último, vamos examinar o comportamento das curvas ROC-AUC e Precision-Recall.
+
+Recapitulando, a performance dos modelos é medida conforme mais distante é a curva do modelo da curva de modelo nulo: quanto mais curvada em direção ao canto superior esquerdo para a curva ROC, e quanto mais curvada em direção ao canto superior direito para a curva Precision-Recall.
+
+Também podemos visualizar o valor de AUC a partir da curva ROC, lembrando que trata-se da área sob essa curva.
+
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig3.png)
+
+Podemos observar que, por mais que a curva ROC apresente um bom resultado, a curva Precision-Recall não apresenta a forma esperada, ficando relativamente próxima de uma constante, ainda que acima do modelo nulo. Isso indica que esse modelo é penalizado ao prever preferencialmente a classe majoritaria (0 =  não necessita de internação).
+
+A diferença dos padrões resultantes dessas duas curvas já é um forte indicativo de que a performance deste modelo não é a ideal.
+
+## Modelo que maximiza precisão: m2
+
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig4.png)
+
+De cara, podemos observar que esse modelo tem um valor muito alto de falsos negativos, e baixo de falsos e verdadeiros positivos. Nessa escala, esse efeito é completamente indesejado, pois buscamos sempre prever o maior número possível de casos verdadeiros de pessoas que necessitam de UTI.
+
+---
+
+Veremos como o modelo se comporta à luz dos outros parâmetros de teste:
+
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig5.png)
+
+Como esperado pela alta taxa de falsos negativos, o Recall e F1 desse modelo são muito baixos. Curiosamente também, os valores de precisão apresentam uma dispersão maior do que o modelo de maximização de acurácia. Este não é um resultado esperado, dado que este modelo deveria otimizar justamente o parâmetro de precisão.
+
+---
+
+Com relação às curvas ROC e PC:
+
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig6.png)
+
+A trajetória da curva ROC-AUC mantém-se relativamente semelhante; enquanto que a curva PC na verdade se mostrou melhor que o modelo anterior, não apresentando a queda brusca observada logo no início do outro modelo.
+
+De forma geral, isso poderia representar uma melhora deste modelo em relação ao anterior, mas a distribuição dos parâmetros por validação cruzada indica que a performance geral deste modelo é mais baixa.
+
+## Modelo que maximiza AUC: m3
+
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig7.png)
+
+O modelo que busca maximizar o AUC apresenta um resultado muito similar ao modelo anterior. Isso é esperado, dada a sua semelhança: este modelo possui apenas um passo a mais quando comparado ao anterior, sem muitas alterações nos hiperparâmetros.
+
+Novamente, temos um valor muito alto de falsos negativos e baixo de verdadeiros positivos.
+
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig8.png)
+
+Novamente, como esperado, o padrão encontrado é de baixa recall e F1, com grande variação na precisão.
+
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig9.png)
+
+Aqui ainda vemos o padrão persistente de performance relativamente boa prevista pela curva ROC, com o padrão da curva PC também melhor em relação ao modelo que maximiza acurácia.
+
+## Modelo que maximiza recall: m4
+
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig10.png)
+
+Um padrão curioso agora se faz presente. Ao tentar maximizar o recall, obtemos o resultado esperado: diminuimos o valor de falsos negativos e aumentamos o valor de verdadeiros positivos. Porém, também aumentamos o valor de falsos positivos. A longo prazo, esse efeito também é indesejado: a internação de uma pessoa em um leito de UTI é um procedimento muito custoso, tanto para o sistema de saúde quanto para o paciente. Se o modelo prevê que muitos pacientes que não precisam de UTI sejam internados, isso pode gerar uma sobrecarga do sistema de saúde. A médio prazo porém, esse efeito pode ser amenizado pois o paciente pode acabar não ficando muito tempo internado; mas essa interpretação deve ser feita com muita cautela.
+
+Para efeito do exercício, podemos estar mais interessados em um modelo com maior taxa de falsos positivos em relação aos falsos negativos.
+
+
+---
+
+Vamos examinar os outros resultados do modelo:
+
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig11.png)
+
+Como esperado, este modelo apresenta uma melhora significativa nos valores de recall, e, por consequência, de F1. Também apresenta valores razoáveis das outras métricas, com alta acurácia, a custo de uma precisão um pouco menor, mas com menor variação.
+
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig12.png)
+
+Esse modelo apresenta uma distorção em torno dos valores médios, de 0.4 para taxa de falso positivo e de recall. É um resultado difícil de ser interpretado, que leva à uma pequena queda na AUC; mas o padrão geral das curva PC é o melhor representado até aqui.
+
+---
+
+Por último, vamos examinar o modelo que maximiza o valor de F1.
+
+## Modelo que maximiza F1: m5
+
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig13.png)
+
+Novamente este modelo aponta para o resultado dos modelos inicais: maiores taxas de predição de valores 0, porém sem que a taxa de falsos negativos seja muito mais alta que as demais, como no caso dos modelos de precisão e ROC.
+
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig14.png)
+
+As distribuições das métricas também se assemelham ao resultado do modelo de acurácia, mas também há uma variação muito grande da própria métrica F1 e recall relativamente mais baixo.
+
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig15.png)
+
+Por fim, o diagnóstico das curvas também indica que uma queda de performance à luz da curva PC, ficando pouco acima do modelo nulo.
+
 # Conclusão Final
 
 Não existe um modelo ideal, e nem sempre o melhor modelo é um excelente modelo. Ao buscar maximizar uma única métrica de avaliação do modelo, o algoritmo de busca por AutoML acabou por penalizar os modelos em direções diferentes: ao tentar diminuir a taxa de falsos negativos, aumenta a taxa de falsos positivos e vice-versa. Os melhores modelos possivelmente residem no meio do caminho entre esses dois compromissos.
