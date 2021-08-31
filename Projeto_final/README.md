@@ -154,6 +154,28 @@ Dessa forma, concluímos então a limpeza e análise exploratória de variáveis
 
 ###### Link de acesso: https://github.com/RPGraciotti/BootCampAlura/blob/main/Projeto_final/TPOT.ipynb
 
+# Seleção de modelos por AutoML
+
+Para a definição de quais modelos de ML buscar, eu optei por uma ferramenta de Auto Machine Learning, o [chamado AutoML](https://medium.com/data-hackers/automated-machine-learning-automl-parte-i-1d3219d57d31). Auto Machine Learning compreende uma série de etapas, de métodos e algoritmos desenvolvidos para buscar modelos, pipelines e otimizar parâmetros para um determinado propósito automaticamente. Existem diversas ferramentas que implementam AutoML, acessíveis a qualquer pessoa que faz uso da linguagem python, mesmo quem não tem muita familiaridade (como este que vos fala). 
+Podemos citar o [Auto Sklearn](https://automl.github.io/auto-sklearn/master/), [HyperOpt](http://hyperopt.github.io/hyperopt-sklearn/), [LazyPredict](https://lazypredict.readthedocs.io/en/latest/#), [TPOT](http://epistasislab.github.io/tpot/), etc.
+
+Existem diversas vantagens e [também desvantagens](https://www.kdnuggets.com/2019/03/why-automl-wont-replace-data-scientists.html) associadas com o uso de ferramentas de AutoML, e seu uso também não é necessariamente trivial. Porém, são ferramentas extremamente úteis para se determinar um ponto de partida, podem ser utilizadas em etapas iniciais de um projeto para se delimitar seu escopo, e são ótimas ferramentas didáticas. Para este projeto, eu realizei testes com os algoritmos mencionados seguindo alguns [tutoriais](https://machinelearningmastery.com/automl-libraries-for-python/), e por fim preferi apresentar o uso do TPOT (Tree-based Pipeline Optmization Tool).
+
+Os pontos positivos que me atrairam no uso do TPOT foram a facilidade de implementação e exportação dos resultados, assim como a possibilidade de busca do melhor espaço de parâmetros, que as vezes é realizado com bibliotecas à parte do algoritmo de AutoML. Além disso, é possível determinar que a busca e validação dos modelos seja feita de forma bastante personalizada, a fim de atender a demanda do usuário dependendo do objetivo.
+
+O objetivo do TPOT é determinar não somente um modelo de ML a ser aplicado, mas sim o melhor *Pipeline* a ser utilizado, incluindo etapas de pré-processamento. Também é possível buscar os melhores parâmetros daquele pipeline de forma conjunta. O raciocínio da aplicaçao do TPOT pode ser resumida na seguinte figura (disponível na própria [documentação](http://epistasislab.github.io/tpot/)):
+
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/tpot-ml-pipeline.png)
+
+Na página ["como usar"](http://epistasislab.github.io/tpot/) o TPOT, há uma série de exemplos e recomendações sobre como utilizar um algoritmo de AutoML, quais os cuidados a serem tomados, as limitações, etc. Estando ciente de que uma busca exaustiva envolve tempo e recursos, eu limitei alguns dos parâmetros de busca para que eu pudesse utilizá-lo de forma eficiente em um menor espaço de tempo e recursos computacionais. É possível instalá-lo facilmente pelo Google Colab, mas para uma busca exaustiva essa ferramenta acaba sendo relativamente limitada pelo limite de conexão. Portanto, os resultados apresentados aqui devem ser interpretados à luz de um exercício didático. Feitas as ressalvas necessárias, vou exemplificar o procedimento adotado.
+
+## O que buscar?
+
+A implementação do TPOT permite personalizações interessantes. Além de parâmetros próprios para manipular a permissividade do modelo como ```generations``` e ```population_size```, como dito anteriormente, é possível fazer a validação cruzada de algum parâmetro que se queira maximizar (ou minimizar parâmetros de erro). O meu objetivo aqui foi buscar alguns parâmetros que julguei os mais relevantes para se avaliar os modelos de forma geral, e também olhando mais a fundo alguns indicadores mais específicos relativos ao tipo de modelo e objetivo original (identificar corretamente a necessidade de pacientes serem admitidos em leitos de UTI). Dessa forma, busquei otimizar os parâmetros de Acurácia (accuracy), Precisão (precision), Recall, ROC AUC e F1 score (média harmônica de precisão e recall); pois usarei eles para fazer as avaliações dos modelos.
+
+**Se nenhum score for declarado, por padrão, o TPOT busca maximizar a acurácia. Assim como ele só permite que seja buscado um parâmetro por vez, ao tentar passar uma lista de scores, ele busca automaticamente a acurácia**.
+
+
 # Avaliação dos modelos
 
 ###### Link de acesso: https://github.com/RPGraciotti/BootCampAlura/blob/main/Projeto_final/Avalia%C3%A7%C3%A3o.ipynb
