@@ -363,7 +363,7 @@ Por fim, o diagnóstico das curvas também indica que uma queda de performance �
 
 2. No nosso caso, temos um objetivo claro: identificar corretamente a necessidade de um paciente ser internado em um leito de UTI com covid. Dessa forma, tanto os modelos que maximizaram a acurácia, F1 e recall atendem a esses propósitos. Se o objetivo for buscar a menor taxa de falsos negativos, o melhor modelo é o que maximiza o **recall**. Se objetivo é pesar o compromisso entre as taxas de falsos negativos e falsos positivos, o modelo que maximiza **acurácia** atende melhor a esse propósito.
 
-3. O balanço entre o tempo e poder computacional empregado na busca de modelos também deve ser levado em conta. Um miaor espaço de parâmetros e tempo de busca consome maior poder computacional, mas pode gerar modelos com melhores performances.
+3. O balanço entre o tempo e poder computacional empregado na busca de modelos também deve ser levado em conta. Um maior espaço de parâmetros e tempo de busca consome maior poder computacional, mas pode gerar modelos com melhores performances.
 
 4. Diferentes métricas de avaliação relevam propriedades diferentes dos modelos. Se examinássemos somente o valor de AUC e curva ROC, provavelmente julgaríamos que todos os modelos seriam bons modelos. Vimos que isso não necessariamente é verdade, pois a curva ROC tende a dar grande importância à taxa de verdadeiros negativos, que, muitas vezes, não é o parâmetro mais informativo de um modelo.
 
