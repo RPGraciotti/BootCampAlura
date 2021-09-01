@@ -1,11 +1,33 @@
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/header.jpg)
+
 # Resumo
+
+> O desafio de detectar a necessidade de uma pessoa ser internada na UTI utilizando os dados vitais do paciente foi uma forma instigante de criar um pipeline de limpeza de dados, análise exploratória, busca de modelos de Machine Learning e hiperparâmetros.
+
+> O conjunto de dados inicial carecia de muitos valores, com cerca de 50% de dados faltantes. Foi necessário um cuidadoso trabalho de curadoria e preenchimento de dados faltantes de forma relevante a não enviesar a detecção de padrões.
+
+> Após a limpeza, a análise exploratória revelou que de fato o maior risco de internação em UTI está associado com maior idade e doenças pré-existentes, assim como hipertensão e imunodeficiência.
+
+> Diversos modelos foram testados buscando-se maximizar métricas que descrevem a performance do modelo em identificar corretamente os casos verdadeiros, e sobretudo a capacidade do modelo não errar os falsos negativos, isto é, prever erroneamente que pessoas em quadros graves da doença não precisariam de internação.
+
+> A performance geral dos modelos foi razoável, explicitando-se a necessidade de maiores parâmetros de busca e avaliação dos modelos, a fim de balancear o efeito de previsões do tipo falso positivo e falso negativo.
+
+> Descrevi possíveis direcionamentos para refinamento dos modelos e busca de parâmetros para que a peformance dos modelos seja melhorada.
 
 # Introdução Geral
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/header.jpg)
+A Pandemia de COVID19 marca o início da década de 2020. Uma doença respiratória provocada pelo vírus conhecido como SARS-CoV-2, foi identificada pela primeira vez em Dezembro de 2019, e em Março de 2020 foi considerada uma pandemia pela [Organização Mundial da Saúde](https://www.who.int/director-general/speeches/detail/who-director-general-s-opening-remarks-at-the-media-briefing-on-covid-19---11-march-2020). O nome do vírus deriva de **S**evere **A**cute **R**espiratory **S**yndrome **Co**rona **V**irus, ou: Síndrome Respiratória Aguda Grave causada por Coronavírus. É a segunda doença do tipo causada por um Coronavirus, a primeira teve circulação restrita ao continente asiático durante o [início da década de 2000](https://en.wikipedia.org/wiki/Severe_acute_respiratory_syndrome_coronavirus_1). Entre os sintomas mais comuns da COVID (CoronaVirusDisease) encontram-se febre, cansaço, tosse, dificuldade de respirar, perda de olfato e paladar. Em 14% dos casos, os sintomas evoluem para quadros graves de pneumonia, hipóxia, falência respiratória e falência dos orgãos.
+A facilidade de transmissão e severidade dos sintomas de formas mais graves da doença provocou a rápida disseminação do vírus, que hoje (Agosto de 2021) totaliza mais de 216 milhões de casos e 4 milhões de mortes no [mundo todo](https://covid19.who.int/).
 
-A Pandemia de COVID19 marca o início da década de 2020. Uma doença respiratória provocada pelo vírus conhecida como SARS-CoV-2, foi identificada pela primeira vez em Dezembro de 2019, e em Março de 2020 foi considerada uma pandemia pela [Organização Mundial da Saúde](https://www.who.int/director-general/speeches/detail/who-director-general-s-opening-remarks-at-the-media-briefing-on-covid-19---11-march-2020). Ao contrário do [SARS-CoV-1](https://en.wikipedia.org/wiki/Severe_acute_respiratory_syndrome_coronavirus_1) que circulou predominantemente na Ásia
+Durante os primeiro meses de 2020, a comunidade científica enfrentou vários desafios na busca por compreender os mecanismos de transmissão e prevenção do vírus, a urgência por desenvolvimento de vacinas e tratamentos. A comunidade médica enfrentava a realidade de uma doença que se expande de [forma exponencial](https://www.bbc.com/future/article/20200812-exponential-growth-bias-the-numerical-error-behind-covid-19): cada vez mais pessoas infectadas transmitem com mais facilidade para um número cada vez maior de pessoas. A necessidade de acompanhamento médico em formas mais graves da doença gera uma grande pressão no sistema de saúde: o número de pessoas infectadas e que necessitam de internação em Unidades de Terapia Intensiva (UTI) cresce muito mais do que o sistema de saúde pode suportar. 
 
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/_111232963_controlled_uncontrolled_transmission_640-nc.png)
+
+**nota: hoje, em 2021, sabemos que as melhores medições de contenção da disseminação do vírus envolvem o uso de máscaras e distanciamento social, não somente as medidas propostas na figura**
+
+A maior preocupação durante os momentos de expansão da doença é justamente prever se os sistema de saúde [terão capacidade de lidar](https://www.bbc.com/portuguese/internacional-51850382) com o crescente número de pessoas infectadas e que necessitam de internação em leitos de UTI. Dessa forma, a equipe médica do Sírio-Libanês compilou dados sobre pacientes que foram atendidos em sua rede com sintomas de covid, e propôs um [desafio de identificar as melhores formas de caracterizar a necessidade ou não de pacientes serem internados em leitos de UTI](https://www.kaggle.com/S%C3%ADrio-Libanes/covid19). Utilizando informações sobre a saúde dos pacientes, o objetivo é desenvolver um modelo de Machine Learning capaz de prever a necessidade um paciente ser internado ou não na UTI.
+
+Os dados possuem variáveis discretas que descrevem os pacientes, como idade absoluta, presença de doenças pré-existentes, gênero, etc.; e também variáveis contínuas de medições de sinais vitais, como temperatura, pressão sistólica e diastólica, níveis de proteínas, etc. Os dados são separados em janelas temporais de 2h em 2h, identificando se naquela janela o paciente foi ou não internado. A recomendação inicial da equipe do Sírio-Libanês é restringir a análise ao uso somente dos dados disponíveis até o momento que a pessoa é internada (se internada) na UTI, a fim de evitar a ambiguidade de quando a última medição foi obtida, e também o objetivo é detecar a necessidade de internação o mais rápido possível. 
 # Limpeza e análise exploratória
 
 ###### Link de acesso: https://github.com/RPGraciotti/BootCampAlura/blob/main/Projeto_final/Exploratoria.ipynb
