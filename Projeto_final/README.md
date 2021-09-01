@@ -279,8 +279,6 @@ Também podemos visualizar o valor de AUC a partir da curva ROC, lembrando que t
 
 Podemos observar que, por mais que a curva ROC apresente um bom resultado, a curva Precision-Recall não apresenta a forma esperada, ficando relativamente próxima de uma constante, ainda que acima do modelo nulo. Isso indica que esse modelo é penalizado ao prever preferencialmente a classe majoritaria (0 =  não necessita de internação).
 
-A diferença dos padrões resultantes dessas duas curvas já é um forte indicativo de que a performance deste modelo não é a ideal.
-
 ## Modelo que maximiza precisão: m2
 
 ![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig4.png)
