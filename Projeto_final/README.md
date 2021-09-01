@@ -232,7 +232,7 @@ Os critérios adotados para definir a melhor forma de separar os dados, a ordem 
 
 # Avaliação
 
-## Modelo que maximiza acurácia: m1
+## Modelo que maximiza acurácia
 
 A primeira visualização do comportamento do modelo é feita através da matriz de confusão:
 ![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig1.png)
@@ -279,7 +279,7 @@ Também podemos visualizar o valor de AUC a partir da curva ROC, lembrando que t
 
 Podemos observar que, por mais que a curva ROC apresente um bom resultado, a curva Precision-Recall não apresenta a forma esperada, ficando relativamente próxima de uma constante, ainda que acima do modelo nulo. Isso indica que esse modelo é penalizado ao prever preferencialmente a classe majoritaria (0 =  não necessita de internação).
 
-## Modelo que maximiza precisão: m2
+## Modelo que maximiza precisão
 
 ![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig4.png)
 
@@ -303,7 +303,7 @@ A trajetória da curva ROC-AUC mantém-se relativamente semelhante; enquanto que
 
 De forma geral, isso poderia representar uma melhora deste modelo em relação ao anterior, mas a distribuição dos parâmetros por validação cruzada indica que a performance geral deste modelo é mais baixa.
 
-## Modelo que maximiza AUC: m3
+## Modelo que maximiza AUC
 
 ![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig7.png)
 
@@ -319,7 +319,7 @@ Novamente, como esperado, o padrão encontrado é de baixa recall e F1, com gran
 
 Aqui ainda vemos o padrão persistente de performance relativamente boa prevista pela curva ROC, com o padrão da curva PC também melhor em relação ao modelo que maximiza acurácia.
 
-## Modelo que maximiza recall: m4
+## Modelo que maximiza recall
 
 ![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig10.png)
 
@@ -343,7 +343,7 @@ Esse modelo apresenta uma distorção em torno dos valores médios, de 0.4 para 
 
 Por último, vamos examinar o modelo que maximiza o valor de F1.
 
-## Modelo que maximiza F1: m5
+## Modelo que maximiza F1
 
 ![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig13.png)
 
