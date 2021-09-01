@@ -45,7 +45,7 @@ No total, em ao menos **metade** do nosso dataset não há informação. Um prim
 
 A medida mais imediata para a simplificação e limpeza dos dados foi a remoção de pacientes que deram entrada na UTI na primeira janela de tempo. Essa medida é baseada na recomendação da equipe de utilizar somente os dados disponíveis até o momento da internação.
 
-![resumo dos protocolos indicados pela equipe do Sírio Libanês](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/inbox_1591620_77ca2b4635bc4dd7800e1c777fed9de1_Timeline%20Example%20No.png)
+![resumo dos protocolos indicados pela equipe do Sírio Libanês](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/inbox_1591620_b1bc424df771a4d2d3b3088606d083e6_Timeline%20Example%20Best.png)
 
 Depois, foi necessário preencher os dados faltantes, utilizando um protocolo que preenche uma célula com dados do momento anterior ou posterior (desde que antes da internação), baseando-se no princípio de que os sinais vitais não variam ou pouco variam nesses curtos intervalos de tempo.
 
@@ -363,10 +363,72 @@ Por fim, o diagnóstico das curvas também indica que uma queda de performance �
 
 2. No nosso caso, temos um objetivo claro: identificar corretamente a necessidade de um paciente ser internado em um leito de UTI com covid. Dessa forma, tanto os modelos que maximizaram a acurácia, F1 e recall atendem a esses propósitos. Se o objetivo for buscar a menor taxa de falsos negativos, o melhor modelo é o que maximiza o **recal**. Se objetivo é pesar o compromisso entre as taxas de falsos negativos e falsos positivos, o modelo que maximiza **acurácia** atende melhor a esse propósito.
 
-Uma ressalva importante a ser observada também é que essa melhor habilidade do modelo recall medida por menor variação dos scores de validação cruzada poder ser resultado do maior tempo de otimização dos hiperparâmetros. Como vimos no procedimento de busca de modelos e hiperparâmetros do TPOT, a recall é a métrica mais sensível, pois apresenta maior variação de ganho de performance, o que me motivou a aplicar mais tempo na busca. Talvez aplicar mais tempo na busca dos outros parâmetros também levasse a resultados melhores para os outros parâmetros.
+3. O balanço entre o tempo e poder computacional empregado na busca de modelos também deve ser levado em conta. Um miaor espaço de parâmetros e tempo de busca consome maior poder computacional, mas pode gerar modelos com melhores performances.
 
-Outro padrão interessante a ser discutido é como as diferentes métricas de avaliação relevam propriedades diferentes dos modelos. Se examinássemos somente o valor de AUC e curva ROC, provavelmente julgaríamos que todos os modelos seriam bons modelos. Vimos que isso não necessariamente é verdade, pois a curva ROC tende a dar grande importância à taxa de verdadeiros negativos, que, muitas vezes, não é o parâmetro mais informativo de um modelo. No nosso caso, todos os modelos tiveram taxas igualmente boas de verdadeiros negativos, e isso também é uma consequência do desbalanceamento dos nossos dados, com mais classes 0 do que 1. Essa distorção da leitura da curva ROC é [bastante discutida](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4349800/) na literatura, e não é uma discussão [recente](https://dl.acm.org/doi/10.1145/65943.65945). Por isso, olhamos também para a curva PC e a distribuição dos scores de métricas de avaliação por validação cruzada. A vantagem de utilizar a validação cruzada é que o processo foi repetido diversas vezes e os resultados foram examinados de forma a incorporar a aleatoriedade do processo de separação em dados de treino e dados de teste. 
+4. Diferentes métricas de avaliação relevam propriedades diferentes dos modelos. Se examinássemos somente o valor de AUC e curva ROC, provavelmente julgaríamos que todos os modelos seriam bons modelos. Vimos que isso não necessariamente é verdade, pois a curva ROC tende a dar grande importância à taxa de verdadeiros negativos, que, muitas vezes, não é o parâmetro mais informativo de um modelo.
 
-Uma boa avaliação de um modelo depende de vários fatores, assim como uma boa seleção de modelos. A efetividade geral dos modelos finais pode ser melhorada, e muito, a depender da busca de outros parâmetros. Se escolheremos o modelo que maximiza Recall, teremos uma previsão muito boa dos casos positivos, mas podemos acabar superestimando esses valores e prevendo que pessoas que não necessitam de UTI sejam internadas. Esse também não é o resultado mais desejado, pois, como discutimos, gera uma sobrecarga no sistema de saúde. Em situações menos estressantes, modelos com alto recall mas que geram altas taxas de falso positivo podem ser melhor aplicados, em que o custo de um "excesso de cuidado" pode ser mais baixo do que o caso apresentado. A fim de buscar um melhor compromisso entre esses tipos de erro nas previsões, o primeiro passo seria realizar buscas mais exaustivas, tanto de modelos quanto de hiperparamêtros. Como vimos, a própria documentação do TPOT recomenda que a busca seja feita de forma exaustiva. Porém, isso requer uma alocação muito grande de recursos, o que pode limitar o escopo do projeto.
+5. Outras possibilidades incluem o uso de outras ferramentas de AutoML. Afinal, temos uma grande variedade de algoritmos à disposição, e essa busca também pode ser uma busca exaustiva: "qual o melhor algoritmo de AutoML?" não é uma pergunta muito diferente de "qual o melhor modelo?". 
 
-Outras possibilidades incluem o uso de outras ferramentas de AutoML. Afinal, temos uma grande variedade de algoritmos à disposição, e essa busca também pode ser uma busca exaustiva: "qual o melhor algoritmo de AutoML?" não é uma pergunta muito diferente de "qual o melhor modelo?". A separação dos passos de busca de melhor modelo e melhores hiperparâmetros também pode ser frutífera, iniciando-se primeiro a busca por tipos de modelos mais recomendados para o tipo de problema em questão, e depois o teste de hiperparâmetros, com ferramentas como [Grid Search](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html). Ainda uma outra possibilidade que não explorei é a busca por [Feature Importance](https://machinelearningmastery.com/calculate-feature-importance-with-python/), que pode ajudar a revelar quais as características mais importantes dos dados para a previsão. Por exemplo, um estudo de Feature Importance pode ajudar a resolver algumas questões muito debatidas no cenário da COVID: quais são os [grupos de risco](https://coronavirus.saude.mg.gov.br/blog/84-grupos-de-risco-para-covid-19)? O que será que influenciou mais as decisões dos algoritmos de Machine Learning, a idade das pessoas ou doenças pré-existentes? Vimos marginalmente essa discussão na análise exploratória de dados, mas apenas fizemos uma comparação visual dessas categorias, que poderiam ser melhor exploradas com feature importance, um próximo passo interessantes para o projeto.
+**Para a discussão mais aprofundada, acesse o notebook de avaliação de modelos**
+
+# Agradecimentos
+
+Agradeço em primeiro lugar à toda equipe da Alura, do Bootcamp, do ScubaTeam e colegas. Foi uma experiência muito desafiadora, mas muito, muito recompensadora. Eu saí do absoluto ZERO em progrmação em python e conhecimento de Machine Learning. De coração, agradeço à equipe sensacional do Bootcamp por esse conteúdo tão completo e acessível. Sempre estou recorrendo às aulas para reaprender várias coisas, e também acessar os conteúdos extras. 
+
+Obrigado a você, que acessou e leu este projeto, um pontapé inicial na minha aventura pelo mundo da ciência de dados.
+
+# Referências completas
+
+https://www.who.int/director-general/speeches/detail/who-director-general-s-opening-remarks-at-the-media-briefing-on-covid-19---11-march-2020
+
+https://en.wikipedia.org/wiki/Severe_acute_respiratory_syndrome_coronavirus_1
+
+https://covid19.who.int/
+
+https://en.wikipedia.org/wiki/Severe_acute_respiratory_syndrome_coronavirus_1
+
+https://www.bbc.com/future/article/20200812-exponential-growth-bias-the-numerical-error-behind-covid-19
+
+https://www.bbc.com/portuguese/internacional-51850382
+
+https://www.kaggle.com/S%C3%ADrio-Libanes/covid19
+
+https://medium.com/data-hackers/automated-machine-learning-automl-parte-i-1d3219d57d31
+
+https://automl.github.io/auto-sklearn/master/
+
+http://hyperopt.github.io/hyperopt-sklearn/
+
+https://lazypredict.readthedocs.io/en/latest/#
+
+http://epistasislab.github.io/tpot/
+
+https://www.kdnuggets.com/2019/03/why-automl-wont-replace-data-scientists.html
+https://machinelearningmastery.com/automl-libraries-for-python/
+
+https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RepeatedStratifiedKFold.html
+
+https://www.section.io/engineering-education/introduction-to-random-forest-in-machine-learning/
+
+https://towardsdatascience.com/classification-metrics-confusion-matrix-explained-7c7abe4e9543
+
+https://towardsdatascience.com/various-ways-to-evaluate-a-machine-learning-models-performance-230449055f15
+
+https://scholar.google.com/scholar?hl=pt-BR&as_sdt=0%2C5&q=evaluation+machine+learning+models&btnG
+
+https://scholar.google.com/scholar?as_ylo=2021&q=evaluation+machine+learning+models&hl=pt-BR&as_sdt=0,5
+
+https://machinelearningmastery.com/roc-curves-and-precision-recall-curves-for-classification-in-python/
+
+https://dl.acm.org/doi/10.1145/1143844.1143874
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4349800/
+
+https://dl.acm.org/doi/10.1145/65943.65945
+
+https://machinelearningmastery.com/calculate-feature-importance-with-python/
+
+https://coronavirus.saude.mg.gov.br/blog/84-grupos-de-risco-para-covid-19
+
+https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html
+
