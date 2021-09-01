@@ -2,6 +2,10 @@
 
 # Introdução Geral
 
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/header.jpg)
+
+A Pandemia de COVID19 marca o início da década de 2020. Uma doença respiratória provocada pelo vírus conhecida como SARS-CoV-2, foi identificada pela primeira vez em Dezembro de 2019, e em Março de 2020 foi considerada uma pandemia pela [Organização Mundial da Saúde](https://www.who.int/director-general/speeches/detail/who-director-general-s-opening-remarks-at-the-media-briefing-on-covid-19---11-march-2020). Ao contrário do [SARS-CoV-1](https://en.wikipedia.org/wiki/Severe_acute_respiratory_syndrome_coronavirus_1) que circulou predominantemente na Ásia
+
 # Limpeza e análise exploratória
 
 ###### Link de acesso: https://github.com/RPGraciotti/BootCampAlura/blob/main/Projeto_final/Exploratoria.ipynb
