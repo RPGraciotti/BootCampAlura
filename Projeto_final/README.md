@@ -215,7 +215,7 @@ Novamente, as métricas escolhidas para realizar a avaliação final foram "acur
 
 [Outra explicação resumida sobre métricas de avaliação](https://towardsdatascience.com/various-ways-to-evaluate-a-machine-learning-models-performance-230449055f15).
 
-Outra forma de avaliar graficamente a performance dos modelos, é a inspeção de duas curvas: a própria [curva ROC e a curva Precision-Recall (PC)](https://machinelearningmastery.com/roc-curves-and-precision-recall-curves-for-classification-in-python/).
+Outra forma de avaliar graficamente a performance dos modelos, é a inspeção de duas curvas: a [curva ROC e a curva Precision-Recall (PC)](https://machinelearningmastery.com/roc-curves-and-precision-recall-curves-for-classification-in-python/).
 
 **Explicação detalhada sobre as curvas no notebook de avaliação**
 
