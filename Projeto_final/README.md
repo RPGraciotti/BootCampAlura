@@ -23,7 +23,7 @@ Durante os primeiro meses de 2020, a comunidade científica enfrentou vários de
 
 ![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/_111232963_controlled_uncontrolled_transmission_640-nc.png)
 
-**Nota: hoje, em 2021, sabemos que as melhores medições de contenção da disseminação do vírus envolvem o uso de máscaras e distanciamento social, não somente as medidas propostas na figura**
+**Nota: hoje, em 2021, sabemos que as melhores medidas de contenção da disseminação do vírus envolvem o uso de máscaras e distanciamento social, não somente as medidas propostas na figura**
 
 A maior preocupação durante os momentos de expansão da doença é justamente prever se os sistema de saúde [terão capacidade de lidar](https://www.bbc.com/portuguese/internacional-51850382) com o crescente número de pessoas infectadas e que necessitam de internação em leitos de UTI. Dessa forma, a equipe médica do Sírio-Libanês compilou dados sobre pacientes que foram atendidos em sua rede com sintomas de covid, e propôs um [desafio de identificar as melhores formas de caracterizar a necessidade ou não de pacientes serem internados em leitos de UTI](https://www.kaggle.com/S%C3%ADrio-Libanes/covid19). Utilizando informações sobre a saúde dos pacientes, o objetivo é desenvolver um modelo de Machine Learning capaz de prever a necessidade um paciente ser internado ou não na UTI.
 
