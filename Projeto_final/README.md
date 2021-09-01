@@ -53,7 +53,7 @@ Valores faltantes também aparecem na seguinte situação: se um paciente tem um
 
 Depois, foi necessário o resumo dos dados utilizando-se somente a informação de que se o paciente deu entrada ou não na UTI. É uma simplificação dos dados que parte do mesmo princípio de que se espera que não haja muita variação entre as medições de sinais vitais. Temos ciência de que pode não ser o cenário ideal para um modelo mais complexo e potencialmente mais informativo, mas essa simplificação torna o processo bastante eficiente: precisamos detectar rapidamente a possibilidade de um paciente ser admitido na UTI.
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/inbox_1591620_b1bc424df771a4d2d3b3088606d083e6_Timeline%20Example%20Best.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/inbox_1591620_77ca2b4635bc4dd7800e1c777fed9de1_Timeline%20Example%20No.png)
 
 Por último, encontrei ainda valores faltantes, decorrentes do seguinte cenário: pacientes que só tiveram suas primeiras medidas aferidas após a janela de internação na UTI. Nesse caso, nada mais pôde ser feito a não ser a remoção total desses pacientes.
 
