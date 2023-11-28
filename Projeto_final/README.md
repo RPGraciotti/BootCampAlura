@@ -235,7 +235,7 @@ Os critérios adotados para definir a melhor forma de separar os dados, a ordem 
 ## Modelo que maximiza acurácia
 
 A primeira visualização do comportamento do modelo é feita através da matriz de confusão:
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig1.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig1.jpg)
 
 **Como interpretar a matriz de confusão normalizada?**
 
@@ -263,7 +263,7 @@ Como padrão geral, veremos que a taxa de verdadeiros negativos é sempre alta. 
 
 A próxima visualização é a implementação de validação cruzada com estratificação repetida. O algoritmo aplica a estratificação em 5 classes, 10 vezes, totalizando 50 avaliações. O resultado de cada métrica é representado então através de um boxplot:
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig2.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig2.jpg)
 
 Neste gráfico, a idéia é que os resultados tenham distribuições parecidas, preferencialmente centradas em valores altos. E, como teste adicional da performance da busca por parâmetros, esperamos que a métrica buscada seja a de valor mais alto. Podemos ver que as métricas com valores mais altos foram de ROC_AUC e de acurácia. Entretanto, a métrica de Recall é relativamente baixa, empurrando o valor de F1 também para baixo. 
 
@@ -275,13 +275,13 @@ Por último, o comportamento das curvas ROC-AUC e Precision-Recall: recapituland
 
 Também podemos visualizar o valor de AUC a partir da curva ROC, lembrando que trata-se da área sob essa curva.
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig3.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig3.jpg)
 
 Podemos observar que, por mais que a curva ROC apresente um bom resultado, a curva Precision-Recall não apresenta a forma esperada, ficando relativamente próxima de uma constante, ainda que acima do modelo nulo. Isso indica que esse modelo é penalizado ao prever preferencialmente a classe majoritaria (0 =  não necessita de internação).
 
 ## Modelo que maximiza precisão
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig4.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig4.jpg)
 
 De cara, podemos observar que esse modelo tem um valor muito alto de falsos negativos, e baixo de falsos e verdadeiros positivos. Nessa escala, esse efeito é completamente indesejado, pois buscamos sempre prever o maior número possível de casos verdadeiros de pessoas que necessitam de UTI.
 
@@ -289,7 +289,7 @@ De cara, podemos observar que esse modelo tem um valor muito alto de falsos nega
 
 Veremos como o modelo se comporta à luz dos outros parâmetros de teste:
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig5.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig5.jpg)
 
 Como esperado pela alta taxa de falsos negativos, o Recall e F1 desse modelo são muito baixos. Curiosamente também, os valores de precisão apresentam uma dispersão maior do que o modelo de maximização de acurácia. Este não é um resultado esperado, dado que este modelo deveria otimizar justamente o parâmetro de precisão.
 
@@ -297,7 +297,7 @@ Como esperado pela alta taxa de falsos negativos, o Recall e F1 desse modelo sã
 
 Com relação às curvas ROC e PC:
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig6.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig6.jpg)
 
 A trajetória da curva ROC-AUC mantém-se relativamente semelhante; enquanto que a curva PC na verdade se mostrou melhor que o modelo anterior, não apresentando a queda brusca observada logo no início do outro modelo.
 
@@ -305,23 +305,23 @@ De forma geral, isso poderia representar uma melhora deste modelo em relação a
 
 ## Modelo que maximiza AUC
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig7.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig7.jpg)
 
 O modelo que busca maximizar o AUC apresenta um resultado muito similar ao modelo anterior. Isso é esperado, dada a sua semelhança: este modelo possui apenas um passo a mais quando comparado ao anterior, sem muitas alterações nos hiperparâmetros.
 
 Novamente, temos um valor muito alto de falsos negativos e baixo de verdadeiros positivos.
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig8.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig8.jpg)
 
 Novamente, como esperado, o padrão encontrado é de baixa recall e F1, com grande variação na precisão.
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig9.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig9.jpg)
 
 Aqui ainda vemos o padrão persistente de performance relativamente boa prevista pela curva ROC, com o padrão da curva PC também melhor em relação ao modelo que maximiza acurácia.
 
 ## Modelo que maximiza recall
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig10.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig10.jpg)
 
 Um padrão curioso agora se faz presente. Ao tentar maximizar o recall, obtemos o resultado esperado: diminuimos o valor de falsos negativos e aumentamos o valor de verdadeiros positivos. Porém, também aumentamos o valor de falsos positivos. A longo prazo, esse efeito também é indesejado: a internação de uma pessoa em um leito de UTI é um procedimento muito custoso, tanto para o sistema de saúde quanto para o paciente. Se o modelo prevê que muitos pacientes que não precisam de UTI sejam internados, isso pode gerar uma sobrecarga do sistema de saúde. A médio prazo porém, esse efeito pode ser amenizado pois o paciente pode acabar não ficando muito tempo internado; mas essa interpretação deve ser feita com muita cautela.
 
@@ -331,11 +331,11 @@ Para efeito do exercício, podemos estar mais interessados em um modelo com maio
 
 Vamos examinar os outros resultados do modelo:
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig11.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig11.jpg)
 
 Como esperado, este modelo apresenta uma melhora significativa nos valores de recall, e, por consequência, de F1. Também apresenta valores razoáveis das outras métricas, com alta acurácia, a custo de uma precisão um pouco menor, mas com menor variação.
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig12.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig12.jpg)
 
 Esse modelo apresenta uma distorção em torno dos valores médios, de 0.4 para taxa de falso positivo e de recall. É um resultado difícil de ser interpretado, que leva à uma pequena queda na AUC; mas o padrão geral das curva PC é o melhor representado até aqui.
 
@@ -345,15 +345,15 @@ Por último, vamos examinar o modelo que maximiza o valor de F1.
 
 ## Modelo que maximiza F1
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig13.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig13.jpg)
 
 Novamente este modelo aponta para o resultado dos modelos inicais: maiores taxas de predição de valores 0, porém sem que a taxa de falsos negativos seja muito mais alta que as demais, como no caso dos modelos de precisão e ROC.
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig14.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig14.jpg)
 
 As distribuições das métricas também se assemelham ao resultado do modelo de acurácia, mas também há uma variação muito grande da própria métrica F1 e recall relativamente mais baixo.
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig15.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/results/fig15.jpg)
 
 Por fim, o diagnóstico das curvas também indica que uma queda de performance à luz da curva PC, ficando pouco acima do modelo nulo.
 
