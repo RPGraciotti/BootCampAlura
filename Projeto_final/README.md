@@ -87,7 +87,7 @@ Observei que mesmo não havendo um aumento no número absoluto de internações 
 
 Porém, há um outro dado relativo a idade que é a idade absoluta:
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig2.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig2.jpg)
 
 Legenda: gráfico de barras da distribuição de internações na UTI conforme percentis de faixa etária. 10th indica pacientes de até 10 anos, e assim sucessivamente.
 
@@ -96,7 +96,7 @@ Percebi que conforme maior a idade, sobretudo nos idosos acima de 70 anos, um ma
 ### Gênero:
 E dados sobre gênero?
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig3.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig3.jpg)
 
 Legenda: gráfico de barras da distribuição de internações na UTI conforme gênero. 0 = masculino, 1 = feminino.
 
@@ -105,7 +105,7 @@ Notei que, proporcionalmente mais homens foram internados na UTI do que mulheres
 ### Doenças pré-existentes:
 Um outro tipo de dado disponível do dataframe é uma combinação de 6 grupos de doenças pré-existentes em cada paciente. Devido os protocolos de anonimização, não sabemos quais são esses tipos de doenças, mas podemos examinar sua distribuição também:
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig4.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig4.jpg)
 
 Legenda: gráficos de barras empilhadas para indicar a distribuição dos grupos de doenças. Atente-se ao fato de que a visualização é um pouco diferente, devido à diferença na natureza dessa variável no dataframe: ele indica a proporção de internações em relação ao total na mesma barra.
 
@@ -113,7 +113,7 @@ Vi que os grupos de doenças 2 e 4 apresentam um alto risco de internação em U
 
 A próxima variável relativa à doenças é se o paciente apresenta ou não hipertensão:
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig5.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig5.jpg)
 
 Legenda: gráfico de barras da distribuição de internações na UTI conforme hipertensão. 0 = não apresenta, 1 = apresenta.
 
@@ -121,7 +121,7 @@ Aparentemente a hipertensão também está associada com risco de internação n
 
 [Imunodeficiência](https://en.wikipedia.org/wiki/Immunodeficiency) é um tipo de condição clínica em que a habilidade do sistema imune de uma pessoa combater infecções está comprometida ou é completamente ausente.
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig6.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig6.jpg)
 
 Legenda: gráfico de barras da distribuição de internações na UTI conforme imunodeficiência. 0 = não apresenta, 1 = apresenta.
 
@@ -129,7 +129,7 @@ Embora o número total de pessoas que apresente imunodeficiência seja relativam
 
 Uma última categoria abordada no dataframe, para a qual não temos nenhuma informação de sua natureza, chama-se simplesmente "OTHER (outro)". Podemos observá-la:
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig7.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig7.jpg)
 
 Legenda: gráfico de barras da distribuição de internações na UTI conforme categoria "OTHER". 0 = não apresenta, 1 = apresenta.
 
@@ -139,7 +139,7 @@ Aparentemente, é uma característica frequente na população, dado que a maior
 
 Sabemos que o número de variáveis contínuas é muito maior que o número de variáveis categóricas. A princípio é bastante inviável representar cada variável contínua na forma gráfica como temos feito. Segundo que, mesmo representando-as com uma estatística, nem todas as variáveis contínuas serão informativas, tanto para nossa análise exploratória, como para o desenvolvimento do modelo futuro. A fim de simplificar as visualizções para ter intuições sobre o comportamento dos dados, resumi o conjunto de dados com a variância das variáveis contínuas:
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig8.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig8.jpg)
 
 Um conjunto de dados com variâncias muito baixas pode não ser informativo para um modelo de classificação de Machine Learning.
 
@@ -160,7 +160,7 @@ Prossegui com a remoção de colunas do conjunto de dados que apresentassem ao m
 
 Após a remoção dessas colunas, construí um mapa de calor para melhor visualização da correlação final:
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig9.png)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig9.jpg)
 
 Quanto mais escuros os quadrados no gráfico, maiores os valores de correlação. Em geral, temos que as variáveis restante são bastante não correlacionadas, pois a maior parte da distribuição no mapa é de cores claras.
 
