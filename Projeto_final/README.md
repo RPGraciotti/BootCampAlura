@@ -79,7 +79,7 @@ Temos então que 189 pessoas não foram para UTI e 105 sim, mostrando um resulta
 ### Categorias de idade:
 Muito se discute se a probabilidade de um paciente ser internado ou não na UTI está associada com a sua idade, seja em valores absolutos, ou se o fato do paciente ser idoso ou não é determinante dessa possibilidade. A primeira variável que carrega essa informação no dataset é a coluna AGE_ABOVE65, que identifica se o paciente tem mais ou menos de 65 anos:
 
-![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig1.pjpg)
+![](https://github.com/RPGraciotti/BootCampAlura/raw/main/Projeto_final/figs/exp/fig1.jpg)
 
 Legenda: gráfico de barras da distribuição de internações na UTI conforme idade maior ou menor que 65 anos. 0 para menor, 1 para maior.
 
